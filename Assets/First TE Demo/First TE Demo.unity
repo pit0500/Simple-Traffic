@@ -773,7 +773,7 @@ MonoBehaviour:
   - {fileID: -3634375742938320584, guid: f7f869a2eb4b14bdf96499dd488154e6, type: 3}
   - {fileID: 4862758439369423328, guid: 2fae821b444904e988358333371dbee7, type: 3}
   - {fileID: 4862758439369423328, guid: 0bacab1793c224e43b298ebc46bf0434, type: 3}
-  numberOfAnswerSet: 0
+  numberOfAnswerSet: 10
   useCustomBK: 0
   initAIFile: Assets/StreamingAssets/ThinkEngineer/ThinkEngine/CreateRandomMap.asp
   custom_bk_file_path: 
