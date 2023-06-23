@@ -153,6 +153,9 @@ Transform:
   m_Children:
   - {fileID: 400642046}
   - {fileID: 76598355}
+  - {fileID: 1147730862}
+  - {fileID: 439043548}
+  - {fileID: 1853362210}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -302,6 +305,37 @@ Transform:
   m_Father: {fileID: 11857274}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &439043547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439043548}
+  m_Layer: 0
+  m_Name: TJunction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439043548
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439043547}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 11857274}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &687468669
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,6 +427,37 @@ Transform:
   - {fileID: 1255440835}
   - {fileID: 687468670}
   m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1147730861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1147730862}
+  m_Layer: 0
+  m_Name: Crossroad
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1147730862
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147730861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 11857274}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1210332821
@@ -588,6 +653,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1696869695}
   - component: {fileID: 1696869694}
+  - component: {fileID: 1696869696}
   m_Layer: 0
   m_Name: ThinkEngineUtility
   m_TagString: Untagged
@@ -626,6 +692,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1696869696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696869693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1593840905, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1788147376
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +798,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1853362209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1853362210}
+  m_Layer: 0
+  m_Name: WaypointRoads
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1853362210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853362209}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 11857274}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1979266978
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +866,7 @@ MonoBehaviour:
   _chosenSensorConfigurations: []
   AIFilesPath: /Users/pietro/Documents/Tesi/SimpleTraffic/Assets/StreamingAssets/ThinkEngineer/ThinkEngine
   AIFilesPrefix: CreateRandomMap
-  _AIFileTemplatePath: 
+  _AIFileTemplatePath: ./Assets/ThinkEngineer/ThinkEngine/Templates/ContentBrainTemplateCreateRandomMap.asp
   prefabBrain: 0
   solverEnum: 0
   _executeReasonerOn: When Sensors are ready
@@ -768,12 +877,12 @@ MonoBehaviour:
   initialStripe: 1
   sceneHeight: 10
   instantiablePrefabs:
-  - {fileID: -9111718133099166828, guid: 8ce691a3db66b41c49ceef9a966faf48, type: 3}
-  - {fileID: -6070368069702146686, guid: b2f226b44ff9c4a0ba7cf62544d529be, type: 3}
   - {fileID: -3634375742938320584, guid: f7f869a2eb4b14bdf96499dd488154e6, type: 3}
+  - {fileID: -6070368069702146686, guid: b2f226b44ff9c4a0ba7cf62544d529be, type: 3}
+  - {fileID: -9111718133099166828, guid: 8ce691a3db66b41c49ceef9a966faf48, type: 3}
   - {fileID: 4862758439369423328, guid: 2fae821b444904e988358333371dbee7, type: 3}
   - {fileID: 4862758439369423328, guid: 0bacab1793c224e43b298ebc46bf0434, type: 3}
-  numberOfAnswerSet: 10
+  numberOfAnswerSet: 1
   useCustomBK: 0
   initAIFile: Assets/StreamingAssets/ThinkEngineer/ThinkEngine/CreateRandomMap.asp
   custom_bk_file_path: 
@@ -797,7 +906,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979266978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5168738, y: 0.9531226, z: -0.6696972}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

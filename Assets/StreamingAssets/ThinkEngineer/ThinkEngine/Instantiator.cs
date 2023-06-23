@@ -9,20 +9,23 @@ using UnityEngine.AI;
 public class Instantiator : CustomInstantiator
 {
 
-    public PrefabInstantiator prefabInstantiator;
+    public PrefabInstantiator instantiator;
 
-    public NavMeshSurface[] surfaces;
+    private void Start()
+    {
+        Debug.Log("Starting");
+        instantiator = Utility.PrefabInstantiator;
+    }
 
     public override void ParseLiteral(string predicateName, string[] arguments)
     {
         if (predicateName == "threeWayIntersection")
         {
-            Debug.Log("Instantiating threeWayIntersection");
-            if (int.TryParse(arguments[0], out int index) && int.TryParse(arguments[1], out int x) && int.TryParse(arguments[2], out int z))
+            Debug.Log("Instantiating threeWayIntersection:\n");
+            if (int.TryParse(arguments[0], out int index) && int.TryParse(arguments[1], out int x) && int.TryParse(arguments[2], out int z) && int.TryParse(arguments[3], out int y))
             {
-                prefabInstantiator.InstantiatePrefab(index, new Vector3(x, 0, z), new Quaternion(0, 0, 0, 0));
+                instantiator.InstantiatePrefab(index, new Vector3(x, 0, z), new Quaternion(0, y, 0, 0));
             }
-            foreach (var surface in surfaces) surface.BuildNavMesh();
         }
     }
 

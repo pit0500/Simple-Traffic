@@ -15,7 +15,7 @@
 
 % vicini(X1, Z, X2, Z): This rule defines that two waypoints with the same Z coordinate are neighbors if their X coordinates differ by 1.
 
-#const n = 4.
+#const n = 30.
 
 waypoint(0..n, 0..n).
 
@@ -31,8 +31,6 @@ connArco(X, n, X1, n) :- waypoint(X, n), waypoint(X1, n), vicini(X, n, X1, n).
 
 {connArco(X1, Z1, X2, Z2) : vicini(X1, Z1, X2, Z2)}.
 
-% #show connArco/4.
-
 :- connArco(X, Z, X1, Z1), not connArco(X1, Z1, X, Z).
 
 totArchi(X, Z, Tot) :- Tot = #count{X1, Z1 : connArco(X, Z, X1, Z1)}, connArco(X, Z, _, _).
@@ -41,13 +39,33 @@ totArchi(X, Z, Tot) :- Tot = #count{X1, Z1 : connArco(X, Z, X1, Z1)}, connArco(X
 
 % #show incrocioTreVie/2.
 
-% #show randomWaypoint/2.
+curva(X, Z) :- connArco(X1, Z1, X, Z), connArco(X, Z, X2, Z2), |X1-X2| == 1, |Z1-Z2| == 1, not incrocio(X, Z).
 
 incrocio(X, Z) :- totArchi(X, Z, Tot), Tot > 2.
 
+% Three-way intersection has different types
+
 incrocioTreVie(X, Z) :- totArchi(X, Z, 3).
 
+incrocioTreVieOvest(X, Z) :- totArchi(X, Z, 3), #count{X1: connArco(X1, Z, X, Z)}, connArco(X2, Z, X, Z), X2-X=1.
+
+incrocioTreVieSud(X, Z) :- totArchi(X, Z, 3), #count{Z1: connArco(X, Z1, X, Z)}, connArco(X, Z2, X, Z), Z2-Z=1.
+
+incrocioTreVieEst(X, Z) :- totArchi(X, Z, 3), #count{X1: connArco(X1, Z, X, Z)}, connArco(X2, Z, X, Z), X-X2=1.
+
+incrocioTreVieNord(X, Z) :- totArchi(X, Z, 3), #count{Z1: connArco(X, Z1, X, Z)}, connArco(X, Z2, X, Z), Z-Z2=1.
+
+% Only one type of four-way intersection
+
 incrocioQuattroVie(X, Z) :- totArchi(X, Z, 4).
+
+% Two types of waypoint-roads
+
+waypointRoad(X, Z) :- totArchi(X, Z, 2).
+
+waypointRoadStessaX(X, Z) :- connArco(X, Z1, X, Z), connArco(X, Z2, X, Z), Z1 <> Z2.
+
+waypointRoadStessaZ(X, Z) :- connArco(X1, Z, X, Z), connArco(X2, Z, X, Z), X1 <> X2.
 
 :- n/2 > #count{X, Z : incrocioTreVie(X, Z)} < n.
 
@@ -88,3 +106,25 @@ def getRandomWaypoint(n, i, j):
 
 #end.
 
+#show custom_instantiation/1.
+
+custom_instantiation(threeWayIntersection(Index, X, Z, 0)) :- incrocioTreVieEst(X, Z),
+                        prefabName(Index, "My_Road_TJunction").
+
+custom_instantiation(threeWayIntersection(Index, X, Z, 90)) :- incrocioTreVieSud(X, Z),
+                        prefabName(Index, "My_Road_TJunction").
+
+custom_instantiation(threeWayIntersection(Index, X, Z, 180)) :- incrocioTreVieOvest(X, Z),
+                        prefabName(Index, "My_Road_TJunction").
+
+custom_instantiation(threeWayIntersection(Index, X, Z, 270)) :- incrocioTreVieNord(X, Z),
+                        prefabName(Index, "My_Road_TJunction").
+
+custom_instantiation(fourWayIntersection(Index, X, Z)) :- incrocioQuattroVie(X, Z),
+                         prefabName(Index, "My_Road_Crossroad").
+
+% custom_instantiation(curva(Index, X, Z)) :- prefabName(Index, "Road_Corner"), curva(X, Z).
+
+% custom_instantiation(waypointRoad(Index, X, Z, 0)) :- prefabName(Index, "Road_Waypoint"), waypointRoadStessaZ(X, Z).
+
+% custom_instantiation(waypointRoad(Index, X, Z, 90)) :- prefabName(Index, "Road_Waypoint"), waypointRoadStessaX(X, Z).
