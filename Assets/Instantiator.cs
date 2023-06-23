@@ -4,7 +4,6 @@ using ThinkEngine;
 using ThinkEngine.it.unical.mat.objectsMapper.BrainsScripts.DCS;
 using ThinkEngine.it.unical.mat.objectsMapper.BrainsScripts.Specializations.ASP;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Instantiator : CustomInstantiator
 {
