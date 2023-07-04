@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using ThinkEngine;
+﻿using ThinkEngine;
 using ThinkEngine.it.unical.mat.objectsMapper.BrainsScripts.DCS;
 using ThinkEngine.it.unical.mat.objectsMapper.BrainsScripts.Specializations.ASP;
 using UnityEngine;

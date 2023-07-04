@@ -15,7 +15,7 @@
 
 % vicini(X1, Z, X2, Z): This rule defines that two waypoints with the same Z coordinate are neighbors if their X coordinates differ by 1.
 
-#const n = 10.
+#const n = 50.
 
 waypoint(0..n, 0..n).
 
@@ -26,8 +26,6 @@ vicini(X1, Z, X2, Z) :- waypoint(X1, Z), waypoint(X2, Z), |X1-X2| == 1.
 % vicini(X1, Z1, X2, Z2) :- waypoint(X1, Z1), waypoint(X2, Z2), |X1-X2| == 1, |Z1-Z2| == 1.
 
 % Connection between waypoints
-
-% #show connArco/4.
 
 connArco(0, Z, 0, Z1) :- vicini(0, Z, 0, Z1).
 connArco(X, 0, X1, 0) :- vicini(X, 0, X1, 0).
@@ -42,10 +40,6 @@ connArco(X, n, X1, n) :- vicini(X, n, X1, n).
 % Here we define the number of arcs that connect a waypoint to another
 
 totArchi(X, Z, Tot) :- Tot = #count{X1, Z1 : connArco(X, Z, X1, Z1)}, connArco(X, Z, _, _).
-
-% #show incrocioQuattroVie/2.
-
-% #show incrocioTreVie/2.
 
 curva(X, Z) :- connArco(X1, Z1, X, Z), connArco(X, Z, X2, Z2), |X1-X2| == 1, |Z1-Z2| == 1, not incrocio(X, Z).
 
@@ -115,11 +109,6 @@ def getRandomWaypoint(n, i, j):
     return waypointList[i][j]
 
 #end.
-
-#show custom_instantiation/1.
-
-% #show waypointRoadStessaX/2.
-% #show waypointRoadStessaZ/2.
 
 custom_instantiation(threeWayIntersection(Index, X, Z, 0)) :- incrocioTreVieEst(X, Z),
                         prefabName(Index, "My_Road_TJunction").
