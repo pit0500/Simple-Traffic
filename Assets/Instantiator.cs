@@ -54,7 +54,7 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[3], out int y))
         {
 
-            Vector3 position = new(x * 3, 0, z * 3);
+            Vector3 position = new(x * mapLen, 0, z * mapLen);
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }
@@ -67,7 +67,7 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[2], out int z) &&
                 int.TryParse(arguments[3], out int y))
         {
-            Vector3 position = new(x * 3, 0, z * 3);
+            Vector3 position = new(x * mapLen, 0, z * mapLen);
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }
@@ -92,7 +92,7 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[1], out int x) &&
                 int.TryParse(arguments[2], out int z))
         {
-            Vector3 position = new(x * 2, 0, z * 2);
+            Vector3 position = new(x * mapLen, 0, z * mapLen);
             Quaternion rotation = Quaternion.Euler(0, 0, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }
@@ -107,32 +107,17 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[4], out int y))
         {
             Vector3 position;
-            //if (x == 0 || z == 0 || x == mapLen - 1 || z == mapLen - 1)
-            //{
-            //    if (y == 0)
-            //    {
-            //        position = new(x * mapLen / 2, 0, finish * 2);
-            //    }
-            //    else
-            //    {
-            //        position = new(finish * 2, 0, z * mapLen / 2);
-            //    }
-            //    Quaternion rotation = Quaternion.Euler(0, y, 0);
-            //    instantiator.InstantiatePrefab(index, position, rotation);
-            //}
-            //else
-            //{
             if (y == 0)
             {
-                position = new(x * 2, 0, finish * 2);
+                position = new(x * (mapLen - 1), 0, finish * (mapLen - 1));
             }
             else
             {
-                position = new(finish * 2, 0, z * 2);
+                position = new(finish * (mapLen - 1), 0, z * (mapLen - 1));
             }
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
-            //}
         }
     }
+
 }

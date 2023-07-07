@@ -62,13 +62,7 @@ incrocio(X, Z) :- totArchi(X, Z, Tot), Tot > 2.
 
 % Three-way intersection has different types
 
-incrocioTreVie(0, Z) :- totArchi(0, Z, 3).
-
-incrocioTreVie(n, Z) :- totArchi(n, Z, 3).
-
-incrocioTreVie(X, 0) :- totArchi(X, 0, 3).
-
-incrocioTreVie(X, n) :- totArchi(X, n, 3).
+incrocioTreVie(X, Z) :- totArchi(X, Z, 3).
 
 incrocioTreVieOvest(X, Z) :- incrocioTreVie(X, Z), 2 = #count{Z1 : connArco(X, Z1, X, Z)}, connArco(X1, Z, X, Z), X1-X=1.
 
@@ -90,7 +84,7 @@ straightRoadStessaX(X, Z, Z1) :- connArco(X, Z, X, Z1), Z < Z1, not incrocio(X, 
 
 straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not incrocio(X, Z), not curva(X1, Z).
 
-straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not curva(X, Z), not incrocio(X1, Z).
+straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not incrocio(X1, Z), not curva(X, Z).
 
 % Two types of waypoint-roads
 
