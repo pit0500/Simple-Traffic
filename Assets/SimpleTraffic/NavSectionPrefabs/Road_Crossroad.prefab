@@ -170,6 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233808409161112}
   - component: {fileID: 114784332008515400}
+  - component: {fileID: -4632743974576025248}
   m_Layer: 0
   m_Name: Road_Crossroad
   m_TagString: Untagged
@@ -325,6 +326,19 @@ MonoBehaviour:
     - {fileID: 114719493367214846}
   triggers: []
   phaseInterval: 10
+--- !u!114 &-4632743974576025248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044478496400794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2049078349, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1107694173655360
 GameObject:
   m_ObjectHideFlags: 0
