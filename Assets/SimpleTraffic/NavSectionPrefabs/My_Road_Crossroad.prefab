@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4233808409161112}
   - component: {fileID: 114784332008515400}
+  - component: {fileID: 9138187444882513607}
   m_Layer: 0
   m_Name: My_Road_Crossroad
   m_TagString: Untagged
@@ -262,6 +263,19 @@ MonoBehaviour:
     - {fileID: 114719493367214846}
   triggers: []
   phaseInterval: 10
+--- !u!114 &9138187444882513607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044478496400794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2049078349, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1107694173655360
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,7 +415,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127534137225734}
   m_LocalRotation: {x: -0, y: 0.70710635, z: -0, w: 0.70710725}
-  m_LocalPosition: {x: 0, y: 0, z: -75}
+  m_LocalPosition: {x: 0, y: 0, z: -0.75}
   m_LocalScale: {x: 0.049999997, y: 0.01, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children: []

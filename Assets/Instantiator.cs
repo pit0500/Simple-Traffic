@@ -32,7 +32,7 @@ public class Instantiator : CustomInstantiator
         else if (predicateName == "waypointFill")
         {
             Debug.Log("Instantiating waypoint-road:\n");
-            //InstantiateWaypointFill(arguments);
+            InstantiateWaypointFill(arguments);
         }
         else if (predicateName == "fourWayIntersection")
         {
@@ -46,6 +46,8 @@ public class Instantiator : CustomInstantiator
         }
     }
 
+    private bool IsMargin(int x, int z) => x == 0 || z == 0 || x == mapLen - 1 || z == mapLen - 1;
+
     private void InstantiateThreeWayIntersection(string[] arguments)
     {
         if (int.TryParse(arguments[0], out int index) &&
@@ -53,8 +55,7 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[2], out int z) &&
                 int.TryParse(arguments[3], out int y))
         {
-
-            Vector3 position = new(x * mapLen, 0, z * mapLen);
+            Vector3 position = new(x * 3, 0, z * 3);
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }
@@ -67,24 +68,29 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[2], out int z) &&
                 int.TryParse(arguments[3], out int y))
         {
-            Vector3 position = new(x * mapLen, 0, z * mapLen);
+            Vector3 position = new(x * 3, 0, z * 3);
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }
     }
 
-    //private void InstantiateWaypointFill(string[] arguments)
-    //{
-    //    if (int.TryParse(arguments[0], out int index) &&
-    //            int.TryParse(arguments[1], out int x) &&
-    //            int.TryParse(arguments[2], out int z) &&
-    //            int.TryParse(arguments[3], out int y))
-    //    {
-    //        float newX = (x + 0.5f) * prefabScale;
-    //        float newZ = (z + 0.5f) * prefabScale;
-    //        instantiator.InstantiatePrefab(index, new(newX, 0, newZ), Quaternion.Euler(0, y, 0));
-    //    }
-    //}
+    private void InstantiateWaypointFill(string[] arguments)
+    {
+        if (int.TryParse(arguments[0], out int index) &&
+                int.TryParse(arguments[1], out int x) &&
+                int.TryParse(arguments[2], out int z) &&
+                int.TryParse(arguments[3], out int y))
+        {
+            Vector3 position;
+            position = y switch
+            {
+                0 => new(x * 3, 0, (z * 3) + 1.5f),
+                _ => new((x * 3) + 1.5f, 0, z * 3)
+            };
+            Quaternion rotation = Quaternion.Euler(0, y, 0);
+            instantiator.InstantiatePrefab(index, position, rotation);
+        }
+    }
 
     private void InstantiateFourWayIntersection(string[] arguments)
     {
@@ -107,14 +113,11 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[4], out int y))
         {
             Vector3 position;
-            if (y == 0)
+            position = y switch
             {
-                position = new(x * (mapLen - 1), 0, finish * (mapLen - 1));
-            }
-            else
-            {
-                position = new(finish * (mapLen - 1), 0, z * (mapLen - 1));
-            }
+                0 => new(x * 3, 0, finish * 3),
+                _ => new(finish * 3, 0, x * 3)
+            };
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }

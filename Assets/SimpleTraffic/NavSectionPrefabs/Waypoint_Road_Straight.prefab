@@ -96,7 +96,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4737159651474342}
   - component: {fileID: 114186739460785704}
-  - component: {fileID: 4862758439369423328}
   m_Layer: 0
   m_Name: Waypoint_Road_Straight
   m_TagString: Untagged
@@ -152,19 +151,6 @@ MonoBehaviour:
   - {fileID: 4833832372721778}
   - {fileID: 4963336914234384}
   - {fileID: 4587040946610270}
---- !u!114 &4862758439369423328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1138728264224080}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 2049078349, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  index: 0
 --- !u!1 &1142542368605330
 GameObject:
   m_ObjectHideFlags: 0

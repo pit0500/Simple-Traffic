@@ -88,11 +88,13 @@ straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not incrocio(X1,
 
 % Two types of waypoint-roads
 
-waypointRoad(X, Z) :- incrocioQuattroVie(X1, Z1), connArco(X, Z, X1, Z1).
+waypointRoadStessaX(X, Z) :- straightRoadStessaX(X, Z, Z1).
 
-waypointRoadStessaX(X, Z) :- waypointRoad(X, Z), connArco(X, Z1, X, Z), connArco(X, Z, X, Z2), Z1 <> Z2.
+waypointRoadStessaX(X, Z1) :- straightRoadStessaX(X, Z, Z1).
 
-waypointRoadStessaZ(X, Z) :- waypointRoad(X, Z), connArco(X1, Z, X, Z), connArco(X, Z, X2, Z), X1 <> X2.
+waypointRoadStessaZ(X, Z) :- straightRoadStessaZ(X, Z, X1).
+
+waypointRoadStessaZ(X1, Z) :- straightRoadStessaZ(X, Z, X1).
 
 % Constraints on the number of intersections and intersections position
 
@@ -106,9 +108,9 @@ waypointIsolati(X, Z) :- totArchi(X, Z, 1).
 
 :- incrocio(X, Z), not randomWaypoint(X, Z).
 
-:~ incrocio(X, Z), incrocio(X1, Z1), |X-X1| == 1. [1@1, X, X1]
+:- incrocio(X, Z), incrocio(X1, Z1), vicini(X, Z, X1, Z1).
 
-:~ incrocio(X, Z), incrocio(X1, Z1), |Z-Z1| == 1. [1@1, Z, Z1]
+:- incrocio(X, Z), incrocio(X1, Z1), |X-X1| == 1, |Z-Z1| == 1.
 
 randomWaypoint(@getRandomWaypoint(n+1, I, 0), @getRandomWaypoint(n+1, I, 1)) :- waypoint(I, _), I < n.
 
@@ -140,16 +142,10 @@ def getRandomWaypoint(n, i, j):
 #end.
 
 custom_instantiation(straightRoad(Index, X, Z, Z1, 0)) :- straightRoadStessaX(X, Z, Z1),
-                        prefabName(Index, "Road_Straight"), not incrocio(X, Z1), not curva(X, Z1).
-
-custom_instantiation(straightRoad(Index, X, Z, Z1, 0)) :- straightRoadStessaX(X, Z, Z1),
-                        prefabName(Index, "Road_Straight"), not incrocio(X, Z), not curva(X, Z).
+                        prefabName(Index, "Road_Straight"), not curva(X, Z1).
 
 custom_instantiation(straightRoad(Index, X, Z, X1, 90)) :- straightRoadStessaZ(X, Z, X1),
-                        prefabName(Index, "Road_Straight"), not incrocio(X1, Z), not curva(X1, Z).
-
-custom_instantiation(straightRoad(Index, X, Z, X1, 90)) :- straightRoadStessaZ(X, Z, X1),
-                        prefabName(Index, "Road_Straight"), not incrocio(X, Z), not curva(X, Z).
+                        prefabName(Index, "Road_Straight"), not curva(X1, Z), not incrocio(X1, Z).
 
 custom_instantiation(threeWayIntersection(Index, X, Z, 0)) :- incrocioTreVieEst(X, Z),
                         prefabName(Index, "Road_TJunction").
@@ -182,11 +178,10 @@ custom_instantiation(turn(Index, X, Z, 180)) :- prefabName(Index, "Road_Corner")
 
 custom_instantiation(turn(Index, X, Z, 270)) :- prefabName(Index, "Road_Corner"), curvaOvest(X, Z).
 
-% custom_instantiation(waypointFill(Index, X, Z, 0)) :- prefabName(Index, "Road_StraightShort"),
-%                         waypointRoadStessaX(X, Z).
+custom_instantiation(waypointFill(Index, X, Z, 0)) :- prefabName(Index, "Road_StraightShort"),
+                        waypointRoadStessaX(X, Z).
 
-% custom_instantiation(waypointFill(Index, X, Z, 90)) :- prefabName(Index, "Road_StraightShort"),
-%                         waypointRoadStessaZ(X, Z).
+custom_instantiation(waypointFill(Index, X, Z, 90)) :- prefabName(Index, "Road_StraightShort"),
+                        waypointRoadStessaZ(X, Z).
 
 #show custom_instantiation/1.
-#show connArco/4.

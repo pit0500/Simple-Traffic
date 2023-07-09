@@ -227,6 +227,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4072158857619150}
   - component: {fileID: 114466789270048132}
+  - component: {fileID: 1296840663476253327}
   m_Layer: 0
   m_Name: Road_StraightShort
   m_TagString: Untagged
@@ -277,6 +278,19 @@ MonoBehaviour:
   - {fileID: 114512340038653978}
   speedLimit: 20
   pedestrianSpawns: []
+--- !u!114 &1296840663476253327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168539446821712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2049078349, guid: 06783fc4099d1e04ba318698c43e592c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
 --- !u!1 &1171683409262554
 GameObject:
   m_ObjectHideFlags: 0
