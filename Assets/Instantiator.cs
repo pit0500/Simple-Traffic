@@ -9,8 +9,6 @@ public class Instantiator : CustomInstantiator
     public PrefabInstantiator instantiator;
     public NavMeshSurface[] surfaces;
 
-    private readonly int mapLen = 4;
-
     private void Awake()
     {
         Debug.Log("Starting");
@@ -45,8 +43,6 @@ public class Instantiator : CustomInstantiator
             InstantiateStraightRoad(arguments);
         }
     }
-
-    private bool IsMargin(int x, int z) => x == 0 || z == 0 || x == mapLen - 1 || z == mapLen - 1;
 
     private void InstantiateThreeWayIntersection(string[] arguments)
     {
@@ -98,7 +94,7 @@ public class Instantiator : CustomInstantiator
                 int.TryParse(arguments[1], out int x) &&
                 int.TryParse(arguments[2], out int z))
         {
-            Vector3 position = new(x * mapLen, 0, z * mapLen);
+            Vector3 position = new(x * 3, 0, z * 3);
             Quaternion rotation = Quaternion.Euler(0, 0, 0);
             instantiator.InstantiatePrefab(index, position, rotation);
         }
@@ -116,7 +112,7 @@ public class Instantiator : CustomInstantiator
             position = y switch
             {
                 0 => new(x * 3, 0, finish * 3),
-                _ => new(finish * 3, 0, x * 3)
+                _ => new(finish * 3, 0, z * 3)
             };
             Quaternion rotation = Quaternion.Euler(0, y, 0);
             instantiator.InstantiatePrefab(index, position, rotation);

@@ -15,7 +15,7 @@
 
 % vicini(X1, Z, X2, Z): This rule defines that two waypoints with the same Z coordinate are neighbors if their X coordinates differ by 1.
 
-#const n = 3.
+#const n = 15.
 
 waypoint(0..n, 0..n).
 
@@ -36,6 +36,14 @@ connArco(X, n, X1, n) :- vicini(X, n, X1, n).
 {connArco(X1, Z1, X2, Z2) : vicini(X1, Z1, X2, Z2)}.
 
 :- connArco(X, Z, X1, Z1), not connArco(X1, Z1, X, Z).
+
+waypointInMap(X, Z) :- connArco(X, Z, _, _).
+
+canReach(X, Z, X1, Z1) :- connArco(X, Z, X1, Z1).
+
+canReach(X, Z, X1, Z1) :- connArco(X, Z, X2, Z2), canReach(X2, Z2, X1, Z1).
+
+:- waypointInMap(X, Z), waypointInMap(X1, Z1), not canReach(X, Z, X1, Z1).
 
 % Here we define the number of arcs that connect a waypoint to another
 
@@ -78,23 +86,15 @@ incrocioQuattroVie(X, Z) :- totArchi(X, Z, 4).
 
 % straight road
 
-straightRoadStessaX(X, Z, Z1) :- connArco(X, Z, X, Z1), Z < Z1, not incrocio(X, Z), not curva(X, Z1).
+straightRoadStessaX(X, Z, Z1) :- connArco(X, Z, X, Z1), Z < Z1, not incrocio(X, Z1).
 
-straightRoadStessaX(X, Z, Z1) :- connArco(X, Z, X, Z1), Z < Z1, not incrocio(X, Z1), not curva(X, Z).
-
-straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not incrocio(X, Z), not curva(X1, Z).
-
-straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not incrocio(X1, Z), not curva(X, Z).
+straightRoadStessaZ(X, Z, X1) :- connArco(X, Z, X1, Z), X < X1, not incrocio(X1, Z).
 
 % Two types of waypoint-roads
 
-waypointRoadStessaX(X, Z) :- straightRoadStessaX(X, Z, Z1).
+waypointRoadStessaX(X, Z) :- straightRoadStessaX(X, Z, Z1), not incrocio(X, Z).
 
-waypointRoadStessaX(X, Z1) :- straightRoadStessaX(X, Z, Z1).
-
-waypointRoadStessaZ(X, Z) :- straightRoadStessaZ(X, Z, X1).
-
-waypointRoadStessaZ(X1, Z) :- straightRoadStessaZ(X, Z, X1).
+waypointRoadStessaZ(X, Z) :- straightRoadStessaZ(X, Z, X1), not incrocio(X, Z).
 
 % Constraints on the number of intersections and intersections position
 
