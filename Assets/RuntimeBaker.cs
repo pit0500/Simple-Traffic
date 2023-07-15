@@ -14,7 +14,7 @@ public class RuntimeBaker : MonoBehaviour
 
     private IEnumerator BuildNavMeshAsync()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(10);
 
         UnityMainThreadDispatcher.Instance().Enqueue(OnBuildNavMeshCompleted);
     }
