@@ -2,12 +2,10 @@
 using ThinkEngine.it.unical.mat.objectsMapper.BrainsScripts.DCS;
 using ThinkEngine.it.unical.mat.objectsMapper.BrainsScripts.Specializations.ASP;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Instantiator : CustomInstantiator
 {
     public PrefabInstantiator instantiator;
-    public NavMeshSurface[] surfaces;
 
     private void Awake()
     {

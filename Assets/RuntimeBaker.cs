@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 using UnityEngine.AI;
 
 public class RuntimeBaker : MonoBehaviour
@@ -8,12 +7,20 @@ public class RuntimeBaker : MonoBehaviour
 
     public NavMeshSurface[] surfaces;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
-        foreach (NavMeshSurface surface in surfaces)
-        {
-            surface.BuildNavMesh();
-        }
+        StartCoroutine(BuildNavMeshAsync());
+    }
+
+    private IEnumerator BuildNavMeshAsync()
+    {
+        yield return new WaitForSeconds(1);
+
+        UnityMainThreadDispatcher.Instance().Enqueue(OnBuildNavMeshCompleted);
+    }
+
+    private void OnBuildNavMeshCompleted()
+    {
+        foreach (var surface in surfaces) surface.BuildNavMesh();
     }
 }

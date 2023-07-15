@@ -38,35 +38,42 @@ namespace  Kawaiiju.Traffic
 		// -------------------------------------------------------------------
 		// Initialization
 
-		private List<Road> m_Roads = new List<Road>();
-		private List<Track> m_Tracks = new List<Track>();
+		private List<Road> m_Roads = new();
+		private List<Track> m_Tracks = new();
 
-		private void Start () 
+		private void Awake()
 		{
-			Road[] roadsFound = FindObjectsOfType<Road>();
-			foreach(Road r in roadsFound)
-				m_Roads.Add(r);
-			Track[] tracksFound = FindObjectsOfType<Track>();
-			foreach(Track t in tracksFound)
-				m_Tracks.Add(t);
-
-			if(spawnOnStart)
-			{
-				for(int i = 0; i < maxRoadVehicles; i++)
-					SpawnRoadVehicle(true);
-				for(int i = 0; i < maxTrains; i++)
-					SpawnTrain(true);
-				for(int i = 0; i < maxPedestrians; i++)
-					SpawnPedestrian(true);
-			}
+			StartCoroutine(LoadRoadsAndTracks());
 		}
+
+		private IEnumerator LoadRoadsAndTracks()
+		{
+			yield return new WaitForSeconds(1.5f);
+
+            Road[] roadsFound = FindObjectsOfType<Road>();
+            foreach (Road r in roadsFound)
+                m_Roads.Add(r);
+            Track[] tracksFound = FindObjectsOfType<Track>();
+            foreach (Track t in tracksFound)
+                m_Tracks.Add(t);
+
+            if (spawnOnStart)
+            {
+                for (int i = 0; i < maxRoadVehicles; i++)
+                    SpawnRoadVehicle(true);
+                for (int i = 0; i < maxTrains; i++)
+                    SpawnTrain(true);
+                for (int i = 0; i < maxPedestrians; i++)
+                    SpawnPedestrian(true);
+            }
+        }
 
 		// -------------------------------------------------------------------
 		// Update
 
 		private void Update()
 		{
-			if(Input.GetKeyUp(KeyCode.Backspace))
+            if (Input.GetKeyUp(KeyCode.Backspace))
 				SpawnPedestrian(true);
 			if(Input.GetKeyUp(KeyCode.Return))
 				SpawnRoadVehicle(true);
@@ -85,7 +92,7 @@ namespace  Kawaiiju.Traffic
 		{
 			if(reset)
 				m_RoadVehicleSpawnAttempts = 0;
-			int index = UnityEngine.Random.Range(0, m_Roads.Count);
+			int index = Random.Range(0, m_Roads.Count);
 			Road road = m_Roads[index];
 			VehicleSpawn spawn;
 			if(!road.TryGetVehicleSpawn(out spawn))
@@ -103,7 +110,7 @@ namespace  Kawaiiju.Traffic
 		{
 			if(reset)
 				m_TrainSpawnAttempts = 0;
-			int index = UnityEngine.Random.Range(0, m_Tracks.Count);
+			int index = Random.Range(0, m_Tracks.Count);
 			Track track = m_Tracks[index];
 			VehicleSpawn spawn;
 			if(!track.TryGetVehicleSpawn(out spawn))
@@ -140,7 +147,7 @@ namespace  Kawaiiju.Traffic
 
 		public Transform GetPedestrianDestination()
 		{
-			int index = UnityEngine.Random.Range(0, m_Roads.Count);
+			int index = Random.Range(0, m_Roads.Count);
 			Road road = m_Roads[index];
 			Transform destination;
 			if(!road.TryGetPedestrianSpawn(out destination))

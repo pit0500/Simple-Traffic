@@ -1,14 +1,14 @@
 prefabName(-1,"Empty").
 prefabName(-2,"NotPassable").
-prefabName(21374,"Road_Crossroad").
+prefabName(21434,"Road_Crossroad").
 has_property(-1,passable).
 leftright("Empty","Empty").
 leftright("NotPassable","NotPassable").
 abovebelow("Empty","Empty").
-prefabName(21292,"Road_TJunction").
-prefabName(21278,"Road_Corner").
-prefabName(21272,"Road_Straight").
-prefabName(21266,"Road_StraightShort").
+prefabName(21348,"Road_TJunction").
+prefabName(21334,"Road_Corner").
+prefabName(21328,"Road_Straight").
+prefabName(21322,"Road_StraightShort").
 
 height(10).
 

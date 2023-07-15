@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.016666668
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: a1831a45c6237417f97effc87142fa7a, type: 2}
 --- !u!1001 &524116646
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2536,7 +2536,6 @@ GameObject:
   m_Component:
   - component: {fileID: 732118290}
   - component: {fileID: 732118289}
-  - component: {fileID: 732118291}
   m_Layer: 0
   m_Name: TrafficSystem
   m_TagString: Untagged
@@ -2589,22 +2588,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &732118291
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 732118288}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb440daeb8bc0479d89496530daef076, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  surfaces:
-  - {fileID: 483687644}
-  - {fileID: 1651087628}
-  - {fileID: 1346550492}
 --- !u!1 &767560098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,7 +3659,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: e19fafd9ec025446bbeb68ec4806fff0, type: 2}
 --- !u!1001 &1346775627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4415,7 +4398,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.033333335
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 3cf08c9b7813840a291b34b695012c1d, type: 2}
 --- !u!4 &1661088879 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4554054530330986, guid: e2d97dcf5b4a945fe93ac26272a412a3,

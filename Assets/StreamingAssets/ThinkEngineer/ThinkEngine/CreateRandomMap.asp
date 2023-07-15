@@ -15,9 +15,7 @@
 
 % vicini(X1, Z, X2, Z): This rule defines that two waypoints with the same Z coordinate are neighbors if their X coordinates differ by 1.
 
-#const n = 15.
-
-waypoint(0..n, 0..n).
+waypoint(0..N, 0..N) :- height(N).
 
 % Here we define the neighbors of the waypoints
 
@@ -30,8 +28,8 @@ vicini(X1, Z, X2, Z) :- waypoint(X1, Z), waypoint(X2, Z), |X1-X2| == 1.
 connArco(0, Z, 0, Z1) :- vicini(0, Z, 0, Z1).
 connArco(X, 0, X1, 0) :- vicini(X, 0, X1, 0).
 
-connArco(n, Z, n, Z1) :- vicini(n, Z, n, Z1).
-connArco(X, n, X1, n) :- vicini(X, n, X1, n).
+connArco(N, Z, N, Z1) :- vicini(N, Z, N, Z1), height(N).
+connArco(X, N, X1, N) :- vicini(X, N, X1, N), height(N).
 
 {connArco(X1, Z1, X2, Z2) : vicini(X1, Z1, X2, Z2)}.
 
@@ -41,7 +39,7 @@ waypointInMap(X, Z) :- connArco(X, Z, _, _).
 
 canReach(X, Z, X1, Z1) :- connArco(X, Z, X1, Z1).
 
-canReach(X, Z, X1, Z1) :- connArco(X, Z, X2, Z2), canReach(X2, Z2, X1, Z1).
+canReach(X, Z, X1, Z1) :- canReach(X, Z, X2, Z2), connArco(X2, Z2, X1, Z1).
 
 :- waypointInMap(X, Z), waypointInMap(X1, Z1), not canReach(X, Z, X1, Z1).
 
@@ -50,9 +48,9 @@ canReach(X, Z, X1, Z1) :- connArco(X, Z, X2, Z2), canReach(X2, Z2, X1, Z1).
 totArchi(X, Z, Tot) :- Tot = #count{X1, Z1 : connArco(X, Z, X1, Z1)}, connArco(X, Z, _, _).
 
 curva(0, 0).
-curva(0, n).
-curva(n, 0).
-curva(n, n).
+curva(0, N) :- height(N).
+curva(N, 0) :- height(N).
+curva(N, N) :- height(N).
 
 curva(X, Z) :- connArco(X1, Z1, X, Z), connArco(X, Z, X2, Z2), |X1-X2| == 1, |Z1-Z2| == 1, not incrocio(X, Z).
 
@@ -98,21 +96,21 @@ waypointRoadStessaZ(X, Z) :- straightRoadStessaZ(X, Z, X1), not incrocio(X, Z).
 
 % Constraints on the number of intersections and intersections position
 
-:- n/2 > #count{X, Z : incrocioTreVie(X, Z)} < n.
+:- N/4 < #count{X, Z : incrocioTreVie(X, Z)} < N/2, height(N).
 
-:- n/4 > #count{X, Z : incrocioQuattroVie(X, Z)} < n/2.
+:- N/6 < #count{X, Z : incrocioQuattroVie(X, Z)} < N/4, height(N).
 
-waypointIsolati(X, Z) :- totArchi(X, Z, 1).
+waypointIsolato(X, Z) :- totArchi(X, Z, 1).
 
-:- waypointIsolati(X, Z).
+:- waypointInMap(X, Z), waypointIsolato(X, Z).
 
-:- incrocio(X, Z), not randomWaypoint(X, Z).
+:- randomWaypoint(X, Z), not connArco(X, Z, _, _).
 
 :- incrocio(X, Z), incrocio(X1, Z1), vicini(X, Z, X1, Z1).
 
 :- incrocio(X, Z), incrocio(X1, Z1), |X-X1| == 1, |Z-Z1| == 1.
 
-randomWaypoint(@getRandomWaypoint(n+1, I, 0), @getRandomWaypoint(n+1, I, 1)) :- waypoint(I, _), I < n.
+randomWaypoint(@getRandomWaypoint(N+1, I, 0), @getRandomWaypoint(N+1, I, 1)) :- waypoint(I, _), I < N, height(N).
 
 #script (python)
 
@@ -120,16 +118,15 @@ from clingo.symbol import Number
 from random import randint, seed
 from time import time
 
-waypointList = []
-waypointSet = set()
+waypointList: list[tuple[int, int]] = []
+waypointSet: set[tuple[int, int]]= set()
 
 def generateWaypointList(n):
-    if len(waypointList) == 0:
-        seed(time())
-        while len(waypointSet) < n:
-            x = Number(randint(1, n-1))
-            z = Number(randint(1, n-1))
-            waypointSet.add((x, z))
+    seed(time())
+    while len(waypointSet) < n:
+        x = Number(randint(1, n-1))
+        z = Number(randint(1, n-1))
+        waypointSet.add((x, z))
 
 def getRandomWaypoint(n, i, j):
     n = n.number
@@ -161,14 +158,6 @@ custom_instantiation(threeWayIntersection(Index, X, Z, 270)) :- incrocioTreVieNo
 
 custom_instantiation(fourWayIntersection(Index, X, Z)) :- incrocioQuattroVie(X, Z),
                         prefabName(Index, "Road_Crossroad").
-
-custom_instantiation(turn(Index, 0, 0, 0)) :- prefabName(Index, "Road_Corner").
-
-custom_instantiation(turn(Index, n, 0, 270)) :- prefabName(Index, "Road_Corner").
-
-custom_instantiation(turn(Index, 0, n, 90)) :- prefabName(Index, "Road_Corner").
-
-custom_instantiation(turn(Index, n, n, 180)) :- prefabName(Index, "Road_Corner").
 
 custom_instantiation(turn(Index, X, Z, 0)) :- prefabName(Index, "Road_Corner"), curvaNord(X, Z).
 
