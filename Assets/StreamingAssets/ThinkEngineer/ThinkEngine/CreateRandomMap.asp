@@ -21,7 +21,6 @@ waypoint(0..N, 0..N) :- height(N).
 
 vicini(X, Z1, X, Z2) :- waypoint(X, Z1), waypoint(X, Z2), |Z1-Z2| == 1.
 vicini(X1, Z, X2, Z) :- waypoint(X1, Z), waypoint(X2, Z), |X1-X2| == 1.
-% vicini(X1, Z1, X2, Z2) :- waypoint(X1, Z1), waypoint(X2, Z2), |X1-X2| == 1, |Z1-Z2| == 1.
 
 % Connection between waypoints
 
@@ -45,7 +44,7 @@ canReach(X, Z, X1, Z1) :- canReach(X, Z, X2, Z2), connArco(X2, Z2, X1, Z1).
 
 % Here we define the number of arcs that connect a waypoint to another
 
-totArchi(X, Z, Tot) :- Tot = #count{X1, Z1 : connArco(X, Z, X1, Z1)}, connArco(X, Z, _, _).
+totArchi(X, Z, Tot) :- Tot = #count{X1, Z1 : connArco(X, Z, X1, Z1)}, waypointInMap(X, Z).
 
 curva(0, 0).
 curva(0, N) :- height(N).
@@ -98,7 +97,7 @@ waypointRoadStessaZ(X, Z) :- straightRoadStessaZ(X, Z, X1), not incrocio(X, Z).
 
 :- N/4 < #count{X, Z : incrocioTreVie(X, Z)} < N/2, height(N).
 
-:- N/6 < #count{X, Z : incrocioQuattroVie(X, Z)} < N/4, height(N).
+:- N/8 < #count{X, Z : incrocioQuattroVie(X, Z)} < N/6, height(N).
 
 waypointIsolato(X, Z) :- totArchi(X, Z, 1).
 
@@ -106,9 +105,15 @@ waypointIsolato(X, Z) :- totArchi(X, Z, 1).
 
 :- randomWaypoint(X, Z), not connArco(X, Z, _, _).
 
+:- incrocio(X, Z), incrocio(X1, Z1), |X-X1| == 1, |Z-Z1| == 1.
+
 :- incrocio(X, Z), incrocio(X1, Z1), vicini(X, Z, X1, Z1).
 
-:- incrocio(X, Z), incrocio(X1, Z1), |X-X1| == 1, |Z-Z1| == 1.
+#minimize { 1@1, Z, Z1 : incrocio(X, Z), incrocio(X, Z1), Z <> Z1 }.
+
+#minimize { 1@1, X, X1 : incrocio(X, Z), incrocio(X1, Z), X <> X1 }.
+
+#maximize { 1@2, X, Z : waypointInMap(X, Z) }.
 
 randomWaypoint(@getRandomWaypoint(N+1, I, 0), @getRandomWaypoint(N+1, I, 1)) :- waypoint(I, _), I < N, height(N).
 
