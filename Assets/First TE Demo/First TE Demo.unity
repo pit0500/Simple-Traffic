@@ -719,8 +719,8 @@ MonoBehaviour:
   debug: 1
   solver_options:
   - '--opt-strategy=usc,1 '
-  - '--sat-prepro=3 '
-  - '--configuration=jumpy '
+  - '--configuration=trendy '
+  - '--opt-mode=opt '
   maintainInputFile: 1
   _chosenSensorConfigurations: []
   AIFilesPath: /Users/pietro/Documents/Tesi/SimpleTraffic/Assets/StreamingAssets/ThinkEngineer/ThinkEngine
@@ -734,14 +734,14 @@ MonoBehaviour:
   tileWidth: 1
   tileHeight: 1
   initialStripe: 1
-  sceneHeight: 10
+  sceneHeight: 20
   instantiablePrefabs:
   - {fileID: -4632743974576025248, guid: 549514ad6753145a09f1ead1e306524c, type: 3}
   - {fileID: -7810239986134072087, guid: 56b2976ffc3b34eed972120416fed109, type: 3}
   - {fileID: -9111718133099166828, guid: 8ce691a3db66b41c49ceef9a966faf48, type: 3}
   - {fileID: 4862758439369423328, guid: 2fae821b444904e988358333371dbee7, type: 3}
   - {fileID: 1296840663476253327, guid: 847f27f01186543348cacb2b5664f506, type: 3}
-  numberOfAnswerSet: 1
+  numberOfAnswerSet: 0
   useCustomBK: 0
   initAIFile: Assets/StreamingAssets/ThinkEngineer/ThinkEngine/CreateRandomMap.asp
   custom_bk_file_path: 

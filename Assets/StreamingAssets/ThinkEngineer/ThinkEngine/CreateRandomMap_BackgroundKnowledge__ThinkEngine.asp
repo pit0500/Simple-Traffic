@@ -10,5 +10,5 @@ prefabName(21284,"Road_Corner").
 prefabName(21288,"Road_Straight").
 prefabName(21292,"Road_StraightShort").
 
-height(10).
+height(20).
 
