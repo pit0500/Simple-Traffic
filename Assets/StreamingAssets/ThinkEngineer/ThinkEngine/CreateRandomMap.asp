@@ -109,9 +109,7 @@ waypointIsolato(X, Z) :- totArchi(X, Z, 1).
 
 :- incrocio(X, Z), incrocio(X1, Z1), vicini(X, Z, X1, Z1).
 
-#minimize { 1@1, Z, Z1 : incrocio(X, Z), incrocio(X, Z1), Z <> Z1 }.
-
-#minimize { 1@1, X, X1 : incrocio(X, Z), incrocio(X1, Z), X <> X1 }.
+#maximize { 1@1, X, Z : waypointInMap(X, Z) }.
 
 randomWaypoint(@getRandomWaypoint(N+1, I, 0), @getRandomWaypoint(N+1, I, 1)) :- waypoint(I, _), I < N, height(N).
 
