@@ -122,7 +122,7 @@ from time import time
 waypointList: list[tuple[int, int]] = []
 waypointSet: set[tuple[int, int]]= set()
 
-def generateWaypointList(n):
+def generateWaypoints(n):
     seed(time())
     while len(waypointSet) < n:
         x = Number(randint(1, n-1))
@@ -133,7 +133,7 @@ def getRandomWaypoint(n, i, j):
     n = n.number
     i = i.number
     j = j.number
-    generateWaypointList(n)
+    generateWaypoints(n)
     waypointList = list(waypointSet)
     return waypointList[i][j]
 
