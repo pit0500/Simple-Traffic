@@ -143,7 +143,7 @@ custom_instantiation(straightRoad(Index, X, Z, Z1, 0)) :- straightRoadStessaX(X,
                         prefabName(Index, "Road_Straight"), not curva(X, Z1).
 
 custom_instantiation(straightRoad(Index, X, Z, X1, 90)) :- straightRoadStessaZ(X, Z, X1),
-                        prefabName(Index, "Road_Straight"), not curva(X1, Z), not incrocio(X1, Z).
+                        prefabName(Index, "Road_Straight"), not curva(X1, Z).
 
 custom_instantiation(threeWayIntersection(Index, X, Z, 0)) :- incrocioTreVieEst(X, Z),
                         prefabName(Index, "Road_TJunction").
