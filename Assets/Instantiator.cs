@@ -37,7 +37,7 @@ public class Instantiator : CustomInstantiator
         }
         else if (predicateName == "straightRoad")
         {
-            Debug.Log("Instantiating straght road:\n");
+            Debug.Log("Instantiating straight road:\n");
             InstantiateStraightRoad(arguments);
         }
     }
