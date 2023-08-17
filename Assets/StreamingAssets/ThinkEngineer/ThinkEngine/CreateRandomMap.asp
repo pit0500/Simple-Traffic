@@ -95,9 +95,9 @@ waypointRoadStessaZ(X, Z) :- straightRoadStessaZ(X, Z, X1), not incrocio(X, Z).
 
 % Constraints on the number of intersections and intersections position
 
-:- #count{X, Z : incrocioTreVie(X, Z)} >= N, height(N).
+:- #count{X, Z : incrocioTreVie(X, Z)} > N, height(N).
 
-:- N/4 >= #count{X, Z : incrocioQuattroVie(X, Z)} >= N/2, height(N).
+:- N/8 > #count{X, Z : incrocioQuattroVie(X, Z)} > N/6, height(N).
 
 waypointIsolato(X, Z) :- totArchi(X, Z, 1).
 

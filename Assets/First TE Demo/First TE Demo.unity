@@ -718,9 +718,9 @@ MonoBehaviour:
   enableBrain: 1
   debug: 1
   solver_options:
-  - '--opt-strategy=usc,1 '
-  - '--configuration=trendy '
   - '--opt-mode=opt '
+  - '--opt-strategy=usc,1 '
+  - '--configuration=handy '
   maintainInputFile: 1
   _chosenSensorConfigurations: []
   AIFilesPath: /Users/pietro/Documents/Tesi/SimpleTraffic/Assets/StreamingAssets/ThinkEngineer/ThinkEngine
@@ -734,7 +734,7 @@ MonoBehaviour:
   tileWidth: 1
   tileHeight: 1
   initialStripe: 1
-  sceneHeight: 10
+  sceneHeight: 15
   instantiablePrefabs:
   - {fileID: -4632743974576025248, guid: 549514ad6753145a09f1ead1e306524c, type: 3}
   - {fileID: -7810239986134072087, guid: 56b2976ffc3b34eed972120416fed109, type: 3}
