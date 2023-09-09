@@ -299,7 +299,7 @@ MonoBehaviour:
   spawnOnStart: 1
   maxRoadVehicles: 100
   maxTrains: 5
-  maxPedestrians: 500
+  maxPedestrians: 50
 --- !u!1 &881290797
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,13 +728,13 @@ MonoBehaviour:
   _AIFileTemplatePath: ./Assets/ThinkEngineer/ThinkEngine/Templates/ContentBrainTemplateCreateRandomMap.asp
   prefabBrain: 0
   solverEnum: 0
-  _executeReasonerOn: When Sensors are ready
+  _executeReasonerOn: finishExec
   specificAIFile: 0
   globalAIFile: 0
   tileWidth: 1
   tileHeight: 1
   initialStripe: 1
-  sceneHeight: 15
+  sceneHeight: 20
   instantiablePrefabs:
   - {fileID: -4632743974576025248, guid: 549514ad6753145a09f1ead1e306524c, type: 3}
   - {fileID: -7810239986134072087, guid: 56b2976ffc3b34eed972120416fed109, type: 3}
